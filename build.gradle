@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.unbroken-dome.test-sets' version '1.5.1'
+    id 'java-library'
+}
+
+apply plugin: 'com.bmuschko.nexus'
+
+group 'com.montesinnos'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JNA for interfacing with Hyperscan natives
+    compile 'net.java.dev.jna:jna:4.4.0'
+
+    // test dependencies
+    testCompile 'org.assertj:assertj-core:3.11.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+modifyPom {
+    project {
+        name 'Chimera4j'
+        description 'Run Chimera and Hyperscan 5 in Java'
+        url 'https://github.com/SocialIntelligence/Chimera4j'
+        inceptionYear '2018'
+
+        scm {
+            url 'https://github.com/SocialIntelligence/Chimera4j'
+            connection 'scm:https://git@github.com/SocialIntelligence/Chimera4j'
+            developerConnection 'scm:git://github.com/SocialIntelligence/Chimera4j'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            [developer {
+                id 'swiftengineer'
+            },
+            developer {
+                id 'montesinnos'
+            }]
+        }
+    }
+}
+
+nexus {
+    sign = true
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+}
