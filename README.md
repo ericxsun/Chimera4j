@@ -1,26 +1,27 @@
 # Chimera4j
 
-This project is a fork of the [hyperscan-java](https://github.com/LocateTech/hyperscan-java), which is a wrapper for [Hyperscan](https://github.com/intel/hyperscan). 
-It allows to run full PCRE compliant regexes in the JVM. The reason for the fork is to support `Hyperscan 5`, because it's the only version that is compatible with all PCRE commands.
-It uses [Chimera](https://intel.github.io/hyperscan/dev-reference/chimera.html) It's a super hacky prototype at this point, but will allow you to run full PCRE regexes on the jvm. So that's kinda nice. It uses `chimera` to do this, which is a wrapper for `Hyperscan 5.0.0` and `PCRE`.
+Chimera4j allows you to run full PCRE compliant regexes in the JVM (up to 8 times faster than native PCRE).
+It is essentially just a wrapper for [Chimera](https://intel.github.io/hyperscan/dev-reference/chimera.html). Currently, the project is a bit of a super hacky prototype, but it is tested fairly well and appears to work... so that's kinda nice.
+
+This project is based off the fine work of the folks over at [hyperscan-java](https://github.com/LocateTech/hyperscan-java), which is a wrapper for [Hyperscan](https://github.com/intel/hyperscan). 
 
 ## Installation
 
 #### Gradle
 
 ```
-compile 'com.montesinnos:hyperscan-java:0.1.0'
+compile 'com.rivdata:Chimera4j:0.2.0'
 ```
 
 #### sbt
 
 ```
-libraryDependencies += "com.montesinnos" % "hyperscan-java" % "0.1.0"
+libraryDependencies += "com.rivdata" % "Chimera4j" % "0.2.0"
 ```
 
 ## Usage
 
-Check out the [tests](https://github.com/SocialIntelligence/hyperscan-java/blob/develop/src/test/java/com/rivdata/hyperscan/wrapper/ChimeraTest.java#L56).
+Check out the [tests](https://github.com/SocialIntelligence/Chimera4j/blob/develop/src/test/java/io/carpe/hyperscan/wrapper/ChimeraTest.java#L22).
 
 ## What's the current state of the code?
 Code is just a proof of concept that we can use Hyperscan 5 with Java. We need to validate that's compatible with *all* PCRE regexes before committing to a full development.

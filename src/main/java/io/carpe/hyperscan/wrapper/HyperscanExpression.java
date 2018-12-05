@@ -113,6 +113,7 @@ public class HyperscanExpression implements Expression {
      *
      * @return context
      */
+    @Override
     public Object getContext() {
         return context;
     }
