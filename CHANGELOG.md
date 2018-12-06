@@ -10,3 +10,11 @@
 ### 0.3.0
 
 - Support for running on linux
+
+### 0.4.0
+
+- Swap Linux natives for ones built on AWS's Linux AMI docker image 
+
+### 0.4.1
+
+- Swap Linux natives for ones built with libstdc++ baked in.
