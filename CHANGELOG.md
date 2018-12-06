@@ -6,3 +6,7 @@
 ### 0.2.0
 
 - Allow `Context` object to be fetched from a matched `Expression` provided by the `Scanner`.
+
+### 0.3.0
+
+- Support for running on linux
