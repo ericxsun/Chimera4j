@@ -120,11 +120,6 @@ class ChimeraTest {
     }
 
     @Test
-    void version() {
-        Assertions.assertThat(HyperscanLibrary.INSTANCE.hs_version()).isEqualTo("5.0.0 2018-11-29");
-    }
-
-    @Test
     void infiniteRegex() throws HyperscanException {
         final ChimeraDatabase db = ChimeraDatabase.compile(new ChimeraExpression("a|", EnumSet.of(ChimeraExpressionFlag.SINGLEMATCH)));
         final Scanner scanner = new Scanner();
@@ -137,7 +132,6 @@ class ChimeraTest {
         assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> ChimeraDatabase.compile(new ChimeraExpression(null)));
     }
-
 
     @Test
     void readmeExample() throws HyperscanException {
