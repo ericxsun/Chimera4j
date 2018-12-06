@@ -24,11 +24,9 @@ libraryDependencies += "com.rivdata" % "Chimera4j" % "0.2.0"
 Check out the [tests](https://github.com/SocialIntelligence/Chimera4j/blob/develop/src/test/java/io/carpe/hyperscan/wrapper/ChimeraTest.java#L22).
 
 ## What's the current state of the code?
-Code is just a proof of concept that we can use Hyperscan 5 with Java. We need to validate that's compatible with *all* PCRE regexes before committing to a full development.
+Code is just a proof of concept that we can use Hyperscan 5 and Chimera with Java. We need to validate that's compatible with *all* PCRE regexes before committing to a full development.
 
 Be wary of the following pitfalls:
-- 1. Be afraid of the `.dylib` files I stuck in the resources folder.
-- 1. Be afraid of the `.so` file I stuck in the resources folder. It doesn't even do anything right now.
-- 2. This library is currently only tested on OSX, hopefully I'll be able to use Docker to test out linux functionality soon.
-- 3. If you want to get it to work on linux, it's likely you'll need to build Hyperscan WITH Chimera then pack the resulting files into an `.so` file and stick it in the resources with the current file.
-- 4. The pure Hyperscan `.dylib` file in here is useless, but I'm leaving it in because the code references it in a ton of places. All the functionality it provides is duplicated in the `chimera.dylib`.
+1. Be afraid of the natives. I built the darwin ones on my personal computer, the linux ones I built in [docker](https://github.com/SwiftEngineer/hyperscan/blob/312ac4f3df034c3bf429cdde9da15eadb8df1216/Dockerfile). If you get any errors, these natives are likely the cause. Since they run very differently depending on the hardware you are running on, make sure to test your production environments, or better yet, keep this library out of production altogether.
+1. The `libchimera.so` and `libchimera.dylib` filenames are a bit misleading. In truth, they are actually dynamic libs that link chimera, hyperscan and PCRE together into a FAT executable.
+1. The pure Hyperscan `.dylib` file in here is useless, but I'm leaving it in because the code references it in a ton of places. All the functionality it provides is duplicated in the `chimera.dylib`.
