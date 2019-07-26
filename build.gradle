@@ -10,14 +10,15 @@ buildscript {
 plugins {
     id 'java'
     id 'idea'
-    id 'org.unbroken-dome.test-sets' version '1.5.1'
+    id 'org.unbroken-dome.test-sets' version '2.1.1'
     id 'java-library'
 }
 
 apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'maven-publish'
 
 group 'com.rivdata'
-version '0.3.0'
+version '0.4.1.10'
 
 sourceCompatibility = 1.8
 
@@ -28,6 +29,8 @@ repositories {
 dependencies {
     // JNA for interfacing with Hyperscan natives
     compile 'net.java.dev.jna:jna:4.4.0'
+    compile 'com.esotericsoftware:kryo:5.0.0-RC4'
+    compile 'commons-codec:commons-codec:1.12'
 
     // test dependencies
     testCompile 'org.assertj:assertj-core:3.11.1'
@@ -73,8 +76,27 @@ modifyPom {
     }
 }
 
-nexus {
-    sign = true
-    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        mavenLocal()
+
+        maven {
+            credentials {
+                username "xxx"
+                password "xxx"
+            }
+
+            if(project.version.endsWith('-SNAPSHOT')) {
+                url "xxxx"
+            } else {
+                url "xxxx"
+            }
+        }
+    }
 }

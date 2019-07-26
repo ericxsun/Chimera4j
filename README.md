@@ -7,11 +7,15 @@ This project is based off the fine work of the folks over at [hyperscan-java](ht
 
 ## Installation
 
-#### Gradle
+```
+gradle wrapper
 
+./gradlew clean build [-x test]
+./gradlew publishToMavenLocal [-x test]
+./gradlew publish [-x test]
 ```
-compile 'com.rivdata:Chimera4j:0.2.0'
-```
+
+## Usage
 
 #### sbt
 
@@ -19,7 +23,6 @@ compile 'com.rivdata:Chimera4j:0.2.0'
 libraryDependencies += "com.rivdata" % "Chimera4j" % "0.2.0"
 ```
 
-## Usage
 
 Check out the [tests](https://github.com/SocialIntelligence/Chimera4j/blob/develop/src/test/java/io/carpe/hyperscan/wrapper/ChimeraTest.java#L22).
 
